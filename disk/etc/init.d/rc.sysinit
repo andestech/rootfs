@@ -1,0 +1,35 @@
+#!/bin/sh
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+# PATH environment setting
+export PATH=/demo:$PATH
+# LD_LIBRARY_PATH environment setting
+export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
+
+# mount root filesystem in read-write mode
+#/bin/echo "Mounting root fs rw ..."
+#/bin/mount -n -o remount,rw /
+
+/bin/echo "Sysinit starting"
+/bin/mount -t proc none /proc
+/bin/mount -t devpts -o mode=620 none /dev/pts
+#/bin/mount -t tmpfs tmpfs /dev/shm
+/bin/mount -t sysfs none /sys
+/bin/hostname -F /etc/hostname
+/sbin/syslogd
+/sbin/klogd
+#date -s 092008002009
+date -s 2010.12.01-10:00:00
+ifconfig lo 127.0.0.1
+printf "\033[9;0]" > /dev/tty0
+
+# mount all other filesystems (/etc/fstab)
+#/bin/echo "Mounting other filesystems ..."
+#/bin/mount -a
+
+#ifconfig eth0 192.168.52.200
+#ifconfig lo 127.0.0.1 netmask 255.0.0.0 broadcast 127.255.255.255
+#route add -net 127.0.0.0 netmask 255.0.0.0 lo
+#route add default gw 192.168.52.254 dev eth0
