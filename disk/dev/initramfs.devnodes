@@ -95,3 +95,4 @@ nod /dev/input/mouse0 0666 0 0 c 13 32
 nod /dev/snd/controlC0 0666 0 0 c 116 0
 nod /dev/snd/pcmC0D0p 0666 0 0 c 116 16
 nod /dev/snd/pcmC0D0c 0666 0 0 c 116 24
+nod /dev/net/tun 0666 0 0 c 10 200
