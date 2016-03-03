@@ -6,7 +6,10 @@ export PATH=/demo:$PATH
 # LD_LIBRARY_PATH environment setting
 export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
-
+#tslib environment setting
+export TS_ROOT=.
+export TSLIB_CONFFILE=$TS_ROOT/etc/ts.conf
+export TSLIB_PLUGINDIR=$TS_ROOT/lib/ts
 # settings for ttyS0
 #if echo `/usr/bin/tty` | /bin/grep -q ttyS0 ; then
 if [ ! -e /proc/mounts ]; then
