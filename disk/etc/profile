@@ -10,6 +10,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
 export TS_ROOT=.
 export TSLIB_CONFFILE=$TS_ROOT/etc/ts.conf
 export TSLIB_PLUGINDIR=$TS_ROOT/lib/ts
+export TSLIB_CALIBFILE=$TS_ROOT/etc/pointercal
 # settings for ttyS0
 #if echo `/usr/bin/tty` | /bin/grep -q ttyS0 ; then
 if [ ! -e /proc/mounts ]; then
