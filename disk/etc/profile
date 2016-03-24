@@ -7,7 +7,7 @@ export PATH=/demo:$PATH
 export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
 #tslib environment setting
-export TS_ROOT=.
+export TS_ROOT=
 export TSLIB_CONFFILE=$TS_ROOT/etc/ts.conf
 export TSLIB_PLUGINDIR=$TS_ROOT/lib/ts
 export TSLIB_CALIBFILE=$TS_ROOT/etc/pointercal
