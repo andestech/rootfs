@@ -96,3 +96,4 @@ nod /dev/snd/controlC0 0666 0 0 c 116 0
 nod /dev/snd/pcmC0D0p 0666 0 0 c 116 16
 nod /dev/snd/pcmC0D0c 0666 0 0 c 116 24
 nod /dev/net/tun 0666 0 0 c 10 200
+nod /dev/i2c-0 0666 0 0 c 89 0
