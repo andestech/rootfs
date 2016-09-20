@@ -5,6 +5,7 @@ export hostname1=
 export mnt_path1=
 export auto=
 dmesg > dmesg_boot.log
+echo $(grep Machine /dmesg_boot.log| sed 's/^.*Andes //g') > platform.log
 drvs="FTGPIO010 faraday-rtc FTMAC100 ftsdc010 ADS7846 40x30 ftssp010"
 linux_ver=`uname -r`
 test -e lib/modules/$linux_ver/kernel/drivers/gpio/gpio-ftgpio010.ko && \
@@ -13,7 +14,7 @@ test -e lib/modules/$linux_ver/kernel/drivers/gpio/gpio-ftgpio010.ko && \
 	if [ "$auto" == "1" ]; then
 		rmmod gpio-ftgpio010
 		insmod lib/modules/$linux_ver/kernel/drivers/gpio/gpio-ftgpio010.ko
-	fi	
+	fi
 }
 test -e lib/modules/$linux_ver/kernel/drivers/net/ethernet/faraday/ftmac100.ko && \
 {
@@ -35,7 +36,7 @@ test -e lib/modules/$linux_ver/kernel/drivers/mmc/host/ftsdc010.ko && \
 		insmod lib/modules/$linux_ver/kernel/drivers/mmc/core/mmc_core.ko
 		insmod lib/modules/$linux_ver/kernel/drivers/mmc/card/mmc_block.ko
 		insmod lib/modules/$linux_ver/kernel/drivers/mmc/host/ftsdc010.ko
-	fi	
+	fi
 }
 test -e lib/modules/$linux_ver/kernel/drivers/input/touchscreen/cpe_ts/cpe_ts.ko && \
 {
@@ -43,7 +44,7 @@ test -e lib/modules/$linux_ver/kernel/drivers/input/touchscreen/cpe_ts/cpe_ts.ko
 	if [ "$auto" == "1" ]; then
 		rmmod cpe_ts
 		insmod lib/modules/$linux_ver/kernel/drivers/input/touchscreen/cpe_ts/cpe_ts.ko
-	fi	
+	fi
 }
 test -e lib/modules/$linux_ver/kernel/drivers/video/FTLCDC100/faradayfb-main.ko && \
 {
@@ -53,12 +54,12 @@ test -e lib/modules/$linux_ver/kernel/drivers/video/FTLCDC100/faradayfb-main.ko 
 	insmod lib/modules/$linux_ver/kernel/drivers/video/FTLCDC100/faradayfb-main.ko
 }
 test -e lib/modules/$linux_ver/kernel/sound/nds32/snd-ftssp010.ko && \
-{	
+{
 	insmod lib/modules/$linux_ver/kernel/sound/nds32/snd-ftssp010.ko
 	if [ "$auto" == "1" ]; then
 		rmmod snd_ftssp010
 		insmod lib/modules/$linux_ver/kernel/sound/nds32/snd-ftssp010.ko
-	fi	
+	fi
 }
 test -e lib/modules/$linux_ver/kernel/drivers/watchdog/ftwdt010_wdt.ko && \
 {
@@ -66,13 +67,11 @@ test -e lib/modules/$linux_ver/kernel/drivers/watchdog/ftwdt010_wdt.ko && \
 	if [ "$auto" == "1" ]; then
 		rmmod ftwdt010_wdt
 		insmod lib/modules/$linux_ver/kernel/drivers/watchdog/ftwdt010_wdt.ko
-	fi	
+	fi
 }
 test -e lib/modules/$linux_ver/kernel/drivers/rtc/rtc-ftrtc010.ko
 if [ "$?" == "0" -a "$auto" == "1" ]; then
 	insmod lib/modules/$linux_ver/kernel/drivers/rtc/rtc-ftrtc010.ko
-else
-	exit 1
 fi
 
 #for i in $drvs
@@ -80,7 +79,7 @@ fi
 #drv=$(dmesg | grep "$i")
 #if [ "$?" == "1" ]; then
 #	echo "$i NOT exist"
-#	exit	
+#	exit
 #fi
 #done
 
@@ -94,7 +93,7 @@ if [ "$?" == "1" ]; then
 else
 	echo "mount hastname0 = $hostname0"
 	mount -t nfs -o nolock,rsize=1024,wsize=1024 $hostname0:$mnt_path0 mnt
-fi	
+fi
 
 if [ "$?" != "0" ]; then
 	echo "mount mnt fail"
