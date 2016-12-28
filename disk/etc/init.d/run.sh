@@ -72,6 +72,8 @@ test -e lib/modules/$linux_ver/kernel/drivers/watchdog/ftwdt010_wdt.ko && \
 test -e lib/modules/$linux_ver/kernel/drivers/rtc/rtc-ftrtc010.ko
 if [ "$?" == "0" -a "$auto" == "1" ]; then
 	insmod lib/modules/$linux_ver/kernel/drivers/rtc/rtc-ftrtc010.ko
+else
+	exit 1
 fi
 
 #for i in $drvs
