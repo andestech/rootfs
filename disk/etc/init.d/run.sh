@@ -87,7 +87,6 @@ fi
 
 #exit
 
-udhcpc
 test -z $hostname1
 if [ "$?" == "1" ]; then
 	echo "mount hastname1 = $hostname1"

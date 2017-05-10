@@ -33,3 +33,13 @@ printf "\033[9;0]" > /dev/tty0
 #ifconfig lo 127.0.0.1 netmask 255.0.0.0 broadcast 127.255.255.255
 #route add -net 127.0.0.0 netmask 255.0.0.0 lo
 #route add default gw 192.168.52.254 dev eth0
+
+#Please set your own's mac address, the last 3 number is your job number.
+#  Ex. my job number is 130, my mac address is 00:23:96:00:F'1:30'
+#      your job number is 250, your mac address is 00:23:96:00:F'2:50'
+ifconfig eth0 down
+ifconfig eth0 hw ether 00:23:96:00:F1:30
+ifconfig eth0 up
+udhcpc
+telnetd
+ping -c 3 atcsqa06
