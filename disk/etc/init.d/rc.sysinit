@@ -43,3 +43,12 @@ printf "\033[9;0]" > /dev/tty0
 #udhcpc
 #telnetd
 #ping -c 3 atcsqa06
+
+#Add ipv4 & ipv6 addr to /etc/hosts
+name=" Andes"
+ipv4=`ifconfig eth0 |grep "inet addr:" | awk '{print $2}'| cut -c6-15`
+#ipv6=`ifconfig eth0 |grep "inet6 addr:" | awk '{print $3}' | cut -c1-23`
+IPV4=$ipv4$name
+#IPV6=$ipv6$name
+echo $IPV4 >> /etc/hosts
+#echo $IPV6 >> /etc/hosts
