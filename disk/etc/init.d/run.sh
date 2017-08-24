@@ -18,6 +18,9 @@ do
 
 done</lib/modules/$linux_ver/modules.order
 
+#change SHELL default version
+ln -sf /bin/bash $SHELL
+
 if [ "$auto" != "1" ]; then
         exit 1
 fi
