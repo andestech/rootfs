@@ -1,0 +1,54 @@
+#!/bin/sh
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+# PATH environment setting
+export PATH=/demo:$PATH
+# LD_LIBRARY_PATH environment setting
+export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
+
+# mount root filesystem in read-write mode
+#/bin/echo "Mounting root fs rw ..."
+#/bin/mount -n -o remount,rw /
+
+/bin/echo "Sysinit starting"
+/bin/mount -t proc none /proc
+/bin/mount -t devpts -o mode=620 none /dev/pts
+#/bin/mount -t tmpfs tmpfs /dev/shm
+/bin/mount -t sysfs none /sys
+/bin/hostname -F /etc/hostname
+/sbin/syslogd
+/sbin/klogd
+#date -s 092008002009
+date -s 2010.12.01-10:00:00
+ifconfig lo 127.0.0.1
+printf "\033[9;0]" > /dev/tty0
+
+# mount all other filesystems (/etc/fstab)
+#/bin/echo "Mounting other filesystems ..."
+#/bin/mount -a
+
+#ifconfig eth0 192.168.52.200
+#ifconfig lo 127.0.0.1 netmask 255.0.0.0 broadcast 127.255.255.255
+#route add -net 127.0.0.0 netmask 255.0.0.0 lo
+#route add default gw 192.168.52.254 dev eth0
+
+#Please set your own's mac address, the last 3 number is your job number.
+#  Ex. my job number is 130, my mac address is 00:23:96:00:F'1:30'
+#      your job number is 250, your mac address is 00:23:96:00:F'2:50'
+#ifconfig eth0 down
+#ifconfig eth0 hw ether 00:23:96:00:F1:30
+#ifconfig eth0 up
+#udhcpc
+#telnetd
+#ping -c 3 atcsqa06
+
+#Add ipv4 & ipv6 addr to /etc/hosts
+name=" Andes"
+ipv4=`ifconfig eth0 |grep "inet addr:" | awk '{print $2}'| cut -c6-15`
+#ipv6=`ifconfig eth0 |grep "inet6 addr:" | awk '{print $3}' | cut -c1-23`
+IPV4=$ipv4$name
+#IPV6=$ipv6$name
+echo $IPV4 >> /etc/hosts
+#echo $IPV6 >> /etc/hosts
