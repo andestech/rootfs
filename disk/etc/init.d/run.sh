@@ -8,15 +8,17 @@ dmesg > dmesg_boot.log
 echo $(grep Machine /dmesg_boot.log| sed 's/^.*Andes //g') > platform.log
 linux_ver=`uname -r`
 
-while read module
-do
-        if [ "$auto" == "1" ]; then
-            module_name=`basename $module .ko`
-            rmmod $module_name
-        fi
-        insmod /lib/modules/$linux_ver/$module
+if [ -d /lib/modules/$linux_ver/ ]; then
+        while read module
+        do
+                if [ "$auto" == "1" ]; then
+                        module_name=`basename $module .ko`
+                        rmmod $module_name
+                fi
+                insmod /lib/modules/$linux_ver/$module
 
-done</lib/modules/$linux_ver/modules.order
+        done</lib/modules/$linux_ver/modules.order
+fi
 
 #change SHELL default version
 ln -sf /bin/bash $SHELL
