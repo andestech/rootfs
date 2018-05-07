@@ -3,9 +3,11 @@
 
 # run gettys on the serial ports
 #null::respawn:/sbin/getty -L ttySA0 9600 vt100
+#::respawn:/sbin/getty -n -L ttyS0 38400 vt100 -l /bin/sh
 ::respawn:/sbin/getty -n -l autologin ttyS0 38400 vt100
 #::respawn:/bin/sh
 ttyS0::sysinit:etc/init.d/run.sh
+
 # stuff to do before rebooting
 ::ctrlaltdel:/etc/init.d/reboot
 ::shutdown:/bin/umount -a -r
