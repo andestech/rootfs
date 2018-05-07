@@ -23,6 +23,12 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
 #date -s 092008002009
 date -s 2010.12.01-10:00:00
 ifconfig lo 127.0.0.1
+
+# The ANSI/VT100 Terminal Control Escape Sequences 'ESC[9;X]'
+# is used to set 'sleep mode/screensaver' entering time.
+# (where X is a time in minute; 0 = never).
+# We use this command to avoid LCD panel entering sleep.
+# Confirm the LCD panel is link to tty0 or others.
 printf "\033[9;0]" > /dev/tty0
 
 # mount all other filesystems (/etc/fstab)
