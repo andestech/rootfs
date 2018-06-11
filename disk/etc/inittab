@@ -3,7 +3,7 @@
 
 # run gettys on the serial ports
 #null::respawn:/sbin/getty -L ttySA0 9600 vt100
-::respawn:/sbin/getty -n -L ttyS0 38400 vt100 -l /bin/sh
+::respawn:-/sbin/getty -n -L ttyS0 38400 vt100 -l usr/autologin.profile
 #::respawn:/sbin/getty -n -l autologin ttyS0 38400 vt100
 #::respawn:/bin/sh
 #ttyS0::sysinit:etc/init.d/run.sh
