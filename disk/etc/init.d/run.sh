@@ -22,7 +22,7 @@ fi
 
 #change SHELL default version
 if [ -f /bin/bash ]; then
-        ln -sf /bin/bash $SHELL
+        ln -sf /bin/bash /bin/sh
 fi
 
 if [ "$auto" != "1" ]; then

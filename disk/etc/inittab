@@ -6,7 +6,7 @@
 ::respawn:-/sbin/getty -n -L ttyS0 38400 vt100 -l usr/autologin.profile
 #::respawn:/sbin/getty -n -l autologin ttyS0 38400 vt100
 #::respawn:/bin/sh
-#ttyS0::sysinit:etc/init.d/run.sh
+ttyS0::sysinit:etc/init.d/run.sh
 
 # stuff to do before rebooting
 ::ctrlaltdel:/etc/init.d/reboot
