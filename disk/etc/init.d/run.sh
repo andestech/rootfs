@@ -21,7 +21,9 @@ if [ -d /lib/modules/$linux_ver/ ]; then
 fi
 
 #change SHELL default version
-ln -sf /bin/bash $SHELL
+if [ -f /bin/bash ]; then
+        ln -sf /bin/bash $SHELL
+fi
 
 if [ "$auto" != "1" ]; then
         exit 1
