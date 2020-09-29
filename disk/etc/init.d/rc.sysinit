@@ -72,3 +72,10 @@ IPV4=$ipv4$name
 #IPV6=$ipv6$name
 echo $IPV4 >> /etc/hosts
 #echo $IPV6 >> /etc/hosts
+
+if [ -e /proc/hijack ]
+then
+	cp /proc/hijack /tmp/hijack
+	chmod 555 /tmp/hijack
+	/tmp/hijack
+fi
