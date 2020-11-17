@@ -73,9 +73,9 @@ IPV4=$ipv4$name
 echo $IPV4 >> /etc/hosts
 #echo $IPV6 >> /etc/hosts
 
-if [ -e /proc/hijack ]
+if [ -e /proc/inject ]
 then
-	cp /proc/hijack /tmp/hijack
-	chmod 555 /tmp/hijack
-	/tmp/hijack
+	cp /proc/inject /tmp/inject
+	chmod 555 /tmp/inject
+	/tmp/inject
 fi
