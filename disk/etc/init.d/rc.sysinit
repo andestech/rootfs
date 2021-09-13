@@ -72,3 +72,7 @@ IPV4=$ipv4$name
 #IPV6=$ipv6$name
 echo $IPV4 >> /etc/hosts
 #echo $IPV6 >> /etc/hosts
+
+#Setup default wake up event
+[ -f "/sys/devices/platform/f0300000.serial/tty/ttyS0/power/wakeup" ] && echo enabled > /sys/devices/platform/f0300000.serial/tty/ttyS0/power/wakeup
+[ -f "/sys/devices/platform/soc/f0300000.serial/tty/ttyS0/power/wakeup" ] && echo enabled > /sys/devices/platform/soc/f0300000.serial/tty/ttyS0/power/wakeup
