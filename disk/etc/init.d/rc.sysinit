@@ -79,3 +79,7 @@ then
 	chmod 555 /tmp/inject
 	/tmp/inject
 fi
+
+#Setup default wake up event
+[ -f "/sys/devices/platform/f0300000.serial/tty/ttyS0/power/wakeup" ] && echo enabled > /sys/devices/platform/f0300000.serial/tty/ttyS0/power/wakeup
+[ -f "/sys/devices/platform/soc/f0300000.serial/tty/ttyS0/power/wakeup" ] && echo enabled > /sys/devices/platform/soc/f0300000.serial/tty/ttyS0/power/wakeup
