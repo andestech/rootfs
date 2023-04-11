@@ -14,9 +14,12 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
 
 /bin/echo "Sysinit starting"
 /bin/mount -t proc none /proc
-/bin/mount -t devpts -o mode=620 none /dev/pts
 /bin/mount -t devtmpfs devtmpfs /dev
-#/bin/mount -t tmpfs tmpfs /dev/shm
+mkdir -p /dev/pts
+mkdir -p /dev/shm
+chmod +t /dev/shm
+/bin/mount -t devpts -o mode=620 none /dev/pts
+/bin/mount -t tmpfs tmpfs /dev/shm
 /bin/mount -t sysfs none /sys
 /bin/hostname -F /etc/hostname
 /sbin/syslogd
