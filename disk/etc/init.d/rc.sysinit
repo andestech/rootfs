@@ -9,23 +9,23 @@ export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/X11R6/lib
 
 # mount root filesystem in read-write mode
-#/bin/echo "Mounting root fs rw ..."
-#/bin/mount -n -o remount,rw /
+#echo "Mounting root fs rw ..."
+#mount -n -o remount,rw /
 
-/bin/echo "Sysinit starting"
-/bin/mount -t proc none /proc
-/bin/mount -t devtmpfs devtmpfs /dev
+echo "Sysinit starting"
+mount -t proc none /proc
+mount -t devtmpfs devtmpfs /dev
 mkdir -p /dev/pts
 mkdir -p /dev/shm
 chmod +t /dev/shm
-/bin/mount -t devpts -o mode=620 none /dev/pts
-/bin/mount -t tmpfs tmpfs /dev/shm
-/bin/mount -t sysfs none /sys
-/bin/hostname -F /etc/hostname
-/sbin/syslogd
-/sbin/klogd
+mount -t devpts -o mode=620 none /dev/pts
+mount -t tmpfs tmpfs /dev/shm
+mount -t sysfs none /sys
+hostname -F /etc/hostname
+syslogd
+klogd
 #date -s 092008002009
-date -s 2010.12.01-10:00:00
+date -s 2023.03.14-00:00:00
 ifconfig lo 127.0.0.1
 
 # The ANSI/VT100 Terminal Control Escape Sequences 'ESC[9;X]'
@@ -36,8 +36,8 @@ ifconfig lo 127.0.0.1
 printf "\033[9;0]" > /dev/tty0
 
 # mount all other filesystems (/etc/fstab)
-#/bin/echo "Mounting other filesystems ..."
-#/bin/mount -a
+#echo "Mounting other filesystems ..."
+#mount -a
 
 #ifconfig eth0 192.168.52.200
 #ifconfig lo 127.0.0.1 netmask 255.0.0.0 broadcast 127.255.255.255
